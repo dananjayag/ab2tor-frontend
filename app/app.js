@@ -14,8 +14,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import 'sanitize.css/sanitize.css';
-
+// Import Bootstrap Css
+import '!!style-loader!css-loader!../vendor/css/main.scss';
 // Import root app
 import App from 'containers/App';
 

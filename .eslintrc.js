@@ -4,19 +4,19 @@ const prettierOptions = JSON.parse(fs.readFileSync('./.prettierrc', 'utf8'));
 
 module.exports = {
   parser: 'babel-eslint',
-  extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['prettier', 'redux-saga', 'react', 'jsx-a11y'],
+  extends: ['airbnb'],
+  plugins: ['prettier'],
   env: {
-    browser: true,
-    node: true,
-    jest: true,
-    es6: true,
+    browser: false,
+    node: false,
+    jest: false,
+    es6: false,
   },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true,
+      jsx: false,
     },
   },
   rules: {

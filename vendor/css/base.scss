@@ -1,0 +1,44 @@
+
+// Fonts
+
+@font-face {
+    font-family: 'roboto-regular';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto-light';
+    src: url('../fonts/Roboto/Roboto-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opensans';
+    src: url('../fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('../fonts/Ubuntu/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+// Font weights
+
+$light: 200;
+$regular: 400;
+$bold: 600;
+
+// Base Font
+$base-font-family: sans-serif;
+$base-font-weight: $regular;
+$base-font-size: 13px;
+$base-line-height: 1.4;
