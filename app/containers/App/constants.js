@@ -8,3 +8,9 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+ 
+ export const CHECK_AND_VERIFY_TOKEN = "CHECK_AND_VERIFY_TOKEN";
+ export const UPDATE_TOKEN = "UPDATE_TOKEN";
+ export const AUTHENTICATE_WITH_GOOGLE = "AUTHENTICATE_WITH_GOOGLE";
+ export const LOG_OUT="LOG_OUT";
+

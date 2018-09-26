@@ -19,7 +19,8 @@ export default class HomePage extends React.PureComponent {
   render() {
     return (
         <div>
-            <LoginModal/>
+            This is home page
+      
         </div>
     );
   }
