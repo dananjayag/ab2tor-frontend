@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './navbar.scss';
 import logo from './logo.png';
+import {LoginModal} from '../Modal/LoginModal';
 export class NavBar extends Component {
   constructor(){
     super();
     this.state={
-      slider:false
+      slider:false,
+      loginForm:false
     }
   }
 
@@ -15,9 +17,22 @@ export class NavBar extends Component {
        slider:!prevState.slider
      })})
   }
+  loginClick = (e) =>{
+    this.setState({
+      slider:false,
+      loginForm:true
+    })
+  }
+
+  close = (e) =>{
+    this.setState({
+      slider:false,
+      loginForm:false
+    })
+  }
   render() {
-    let {login,loginClick} = this.props;
-    let {slider} =this.state;
+    let {login} = this.props;
+    let {slider,loginForm} =this.state;
     return(
     <div className="navbar-custom">
             <ul>
@@ -26,7 +41,7 @@ export class NavBar extends Component {
               <li className="berger"> <a href="stories"> Success Stories </a>  </li>
               
               {!slider && <li className="hamberger pull-right" onClick={this.toggle}><i className="fa fa-bars"></i></li>}
-              <li className="berger pull-right" onClick={loginClick}> <a> {(login) ? "Log out" : "Log in"} </a>  </li>
+              <li className="berger pull-right" onClick={this.loginClick}> <a> {(login) ? "Log out" : "Log in"} </a>  </li>
               <li className="berger pull-right"> <a href="/about"> About Us </a>   </li>
               {
                 slider && <div className="slider fadeInRight animated">
@@ -35,7 +50,7 @@ export class NavBar extends Component {
                       </div>
                       <div className="container">
                         <ul>
-                          <li onClick={loginClick}> <a> {(login) ? "Log out" : "Log in"} </a>  </li>
+                          <li onClick={this.loginClick}> <a> {(login) ? "Log out" : "Log in"} </a>  </li>
                           <li> <a href="/about"> About Us </a>   </li>
                           <li> <a href="/howItWorks"> How it works </a>   </li>
                           <li> <a href="stories"> Success Stories </a>  </li>
@@ -46,6 +61,7 @@ export class NavBar extends Component {
                 </div>
               }
             </ul>
+            <LoginModal close={this.close} login={loginForm}/>
     </div>
   )}
 }
