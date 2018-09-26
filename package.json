@@ -47,7 +47,6 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
   },
-
   "babel": {
     "plugins": [
       "styled-components"
@@ -151,6 +150,8 @@
     "prop-types": "15.6.1",
     "react": "16.4.1",
     "react-dom": "16.4.1",
+    "react-global-configuration": "^1.3.0",
+    "react-google-login": "^3.2.1",
     "react-helmet": "5.2.0",
     "react-intl": "2.4.0",
     "react-loadable": "5.4.0",

@@ -11,19 +11,28 @@
  * the linting exception.
  */
 
-import React from 'react';
+import React,{Component} from 'react';
 import { Switch, Route } from 'react-router-dom';
-
+import {NavBar} from 'components/Navbar/navbar';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import config from 'react-global-configuration';
+import configJson from '../../config.json';
+export default class App extends Component{
 
-export default function App() {
+  componentWillMount(){
+    config.set(configJson)
+  }
+  render(){
   return (
     <div>
+
+      <NavBar/>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
   );
+}
 }

@@ -21,7 +21,7 @@ module.exports = options => ({
       publicPath: '/',
     },
     options.output,
-  ), // Merge with env dependent settings
+  ), // Merge with env dependent 
   optimization: options.optimization,
   module: {
     rules: [
