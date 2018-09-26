@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import './LoginModal.scss';
+import logo from '../Navbar/logo.png';
+import {globalConfig} from '../../utils/constants';
 import { GoogleLogin } from 'react-google-login';
-import config from 'react-global-configuration';
 export class LoginModal extends Component{
     componentDidMount(){
         let modalHolder = document.getElementById("modal");
@@ -11,19 +12,24 @@ export class LoginModal extends Component{
                 }
         })
     }
+    onSuccess = (token) =>{
+        this.props.authenticateWithGoogle(token);
+        this.props.close()
+    }
     render(){
-       let Id =  config.get("GOOGLE_CLIENT_ID");
-       let {login} =this.props;
+       let Id = globalConfig.GOOGLE_CLIENT_ID;
+       let {isLoginForm} =this.props;
         return(
             
-           <div id="modal" className={(login)? "login-modal-container open tada  animated ":"login-modal-container"}>
+           <div id="modal" className={(isLoginForm)? "login-modal-container open tada  animated ":"login-modal-container"}>
                 <div className="login-modal">
                     <div className="google">
+                       <img  src={logo}/>
                         <GoogleLogin
                             clientId={Id}
-                            buttonText="Login with Google"
+                            buttonText={<span> Login with <i className="fa fa-google" aria-hidden="true"></i></span>}
                             className="google-button"
-                            onSuccess={(e)=>{console.log(e)}}
+                            onSuccess={(token)=>{this.onSuccess(token)}}
                             onFailure={(e)=>{console.log("Failure",e)}}
                         />
                     </div>

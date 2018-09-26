@@ -16,23 +16,58 @@ import { Switch, Route } from 'react-router-dom';
 import {NavBar} from 'components/Navbar/navbar';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import config from 'react-global-configuration';
-import configJson from '../../config.json';
-export default class App extends Component{
+import {makeSelectIsLogged,makeSelectLocation} from './selectors';
+import injectReducer from '../../utils/injectReducer';
+import injectSaga from '../../utils/injectSaga';
+import {createStructuredSelector} from 'reselect';
+import {connect} from 'react-redux';
+import {compose} from 'redux'
+import reducer from './reducer';
+import saga from './saga';
+import {checkToken,authenticateWithGoogle,logout} from './actions'
 
-  componentWillMount(){
-    config.set(configJson)
+class App extends Component{
+   constructor(){
+       super();
+   }
+  
+  componentDidMount(){
+    this.props.checkToken();
   }
   render(){
   return (
-    <div>
+            <div>
 
-      <NavBar/>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </div>
-  );
+                <NavBar isloggedIn={this.props.isLoggedIn} logout={this.props.logout} authenticateWithGoogle={this.props.authenticateWithGoogle} location={this.props.location}/>
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route component={NotFoundPage} />
+                  </Switch>
+
+            </div>
+          );
+  }
 }
+
+
+export const   mapDispatchToProps = (dispatch) =>{
+       return{
+        checkToken : evt => dispatch(checkToken()),
+        authenticateWithGoogle : (token) =>{
+            dispatch(authenticateWithGoogle(token))
+        },
+        logout : evt => dispatch(logout())
+       }
+   
 }
+
+export const mapStatetoProps = createStructuredSelector({
+    isLoggedIn : makeSelectIsLogged(),
+    location : makeSelectLocation()
+})
+const withConnect = connect(mapStatetoProps,mapDispatchToProps);
+
+const withReducer = injectReducer({key:'global',reducer});
+const withSaga =injectSaga({key:'globalSaga' ,saga} )
+
+export default compose(withReducer,withSaga,withConnect)(App)
